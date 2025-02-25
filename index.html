@@ -5,70 +5,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aivana – Coming Soon</title>
     <style>
+        /* Global Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #1c1c1c, #333333);
+            color: #ffffff;
             text-align: center;
-            margin: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
+
+        /* Main Content Box */
+        .container {
+            max-width: 600px;
+            width: 90%;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
         h1 {
-            font-size: 3em;
-            color: #333;
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
+
         p {
-            font-size: 1.5em;
-            color: #666;
-        }
-        form {
-            margin-top: 20px;
-        }
-        input[type="email"] {
-            padding: 10px;
             font-size: 1.2em;
-            width: 300px;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        /* Form Styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        input[type="email"] {
+            width: 80%;
+            max-width: 350px;
+            padding: 12px;
+            font-size: 1em;
             border: 1px solid #ccc;
             border-radius: 5px;
+            outline: none;
         }
+
         button {
-            padding: 10px 15px;
+            padding: 12px 20px;
             font-size: 1.2em;
             background-color: #007BFF;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background 0.3s ease;
         }
+
         button:hover {
             background-color: #0056b3;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1em;
+            }
+            input[type="email"] {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>AivanaAI is Coming Soon!</h1>
-    <p>Exciting things are happening. Stay tuned!</p>
-    
-    <form id="signup-form">
-        <input type="email" id="email" name="email" placeholder="Enter your email to receive updates" required>
-        <button type="submit">Notify Me</button>
-    </form>
+    <div class="container">
+        <h1>🚀 Aivana is Coming Soon!</h1>
+        <p>Stay tuned for an AI-powered experience like never before.</p>
 
-    <p id="message"></p>
+        <form id="signup-form">
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <button type="submit">Notify Me</button>
+        </form>
+
+        <p id="message"></p>
+    </div>
 
     <script>
         document.getElementById("signup-form").addEventListener("submit", async function(event) {
             event.preventDefault();
             const email = document.getElementById("email").value;
+            
             const response = await fetch("https://formspree.io/f/xjkgqajz", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email: email })
-            });
-            if (response.ok) {
-                document.getElementById("message").innerText = "Thank you! We'll notify you when we launch.";
-                document.getElementById("signup-form").reset();
-            } else {
-                document.getElementById("message").innerText = "Something went wrong. Please try again.";
             }
-        });
-    </script>
-</body>
-</html>
